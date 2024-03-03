@@ -8,12 +8,19 @@
 </head>
 <body>
     <div id="content" class="container">
-        <h1>Hello, Vue</h1>
-        <p>Welcome to vue</p>
+        <h1>{{pageTitle}}</h1>
+        <p>{{content}}</p>
     </div>
 
     <script>
-         Vue.createApp().mount('#content');
+         Vue.createApp({
+            data(){
+                return {
+                    pageTitle: 'Hello, Vue',
+                    content: 'Welcome to vue'
+                };
+            }
+         }).mount('#content');
     </script>
 </body>
 </html>
