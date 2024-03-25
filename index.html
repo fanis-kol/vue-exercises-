@@ -10,7 +10,7 @@
 
     <nav 
         class="navbar navbar-expand-lg"
-        :class="navbarClasses"
+        :class="[`navbar-${theme}`, `bg-${theme}`, 'navbar navbar-expand']"
     >
         <div class="container-fluid">
             <a class="navbar-brand" href="#">My vue</a>
@@ -31,7 +31,7 @@
             <form class="d-flex">
                 <button 
                     class="btn btn-primary"
-                    @click.prevent="useDarkNavbar = !useDarkNavbar"
+                    @click.prevent="changeTheme()"
                 >Toggle Navbar
                 </button>
             </form>
@@ -46,18 +46,10 @@
 
     <script>
          Vue.createApp({
-            computed:{
-                navbarClasses(){
-                    return   {
-                        'navbar-light bg-light': !this.useDarkNavbar, 
-                        'navbar-dark bg-dark' : this.useDarkNavbar
-                    }
-                }
-            },
-            data(){
+                       data(){
                 return {
                     activePage:0,
-                    useDarkNavbar:true,
+                    theme: 'dark',
                   pages : [
                     {
                         link: {text: 'Home', url: 'index.html'},
@@ -78,6 +70,18 @@
                     
                   ]
                 };
+            },
+            methods:{
+                changeTheme(){
+                    console.log('test')
+                    let theme = 'Light';
+
+                    if(this.theme == 'Light'){
+                        theme = 'dark';
+                    }
+
+                    this.theme = theme;
+                }
             }
          }).mount('body');
     </script>
